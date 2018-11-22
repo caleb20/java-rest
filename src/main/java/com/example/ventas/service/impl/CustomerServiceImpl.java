@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
 			cus.setNameCustomer(customerEntity.getNameCustomer());
 			cus.setLastNameCustomer(customerEntity.getLastNameCustomer());
 			cus.setNameDepartment(
-					departmentService.findDepartmentById(customerEntity.getIdDepartment()).get().getNameDepartment());
+					departmentService.getDepartmentById(customerEntity.getIdDepartment()).get().getNameDepartment());
 			customersDTO.add(cus);
 		});
 

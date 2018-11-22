@@ -1,12 +1,17 @@
 package com.example.ventas.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +40,10 @@ public class InvoiceEntity {
 
 	@Column(name = "status_products_inv")
 	private boolean statusProductsInvoice;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "id_inv")
+	private List<DetailInvoiceEntity> invoices = new ArrayList<>();
 
 	public Long getIdInvoice() {
 		return idInvoice;
@@ -92,11 +101,20 @@ public class InvoiceEntity {
 		this.statusProductsInvoice = statusProductsInvoice;
 	}
 
+	public List<DetailInvoiceEntity> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(List<DetailInvoiceEntity> invoices) {
+		this.invoices = invoices;
+	}
+
 	@Override
 	public String toString() {
 		return "InvoiceEntity [idInvoice=" + idInvoice + ", idCustomer=" + idCustomer + ", dateInvoice=" + dateInvoice
 				+ ", totalProductsInvoice=" + totalProductsInvoice + ", totalPayInvoice=" + totalPayInvoice
-				+ ", prePayInvoice=" + prePayInvoice + ", statusProductsInvoice=" + statusProductsInvoice + "]";
+				+ ", prePayInvoice=" + prePayInvoice + ", statusProductsInvoice=" + statusProductsInvoice
+				+ ", invoices=" + invoices + "]";
 	}
 
 }
