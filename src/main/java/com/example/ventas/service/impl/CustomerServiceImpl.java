@@ -20,20 +20,21 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	DeparmentService departmentService;
-	
+
 	@Override
 	public List<CustomerDTO> getAllCustomer() {
 		List<CustomerEntity> customersEntity = customerRepository.findAll();
 
 		List<CustomerDTO> customersDTO = new ArrayList<>();
 
-		for (CustomerEntity customerEntity : customersEntity) {
+		customersEntity.forEach(customerEntity -> {
 			CustomerDTO cus = new CustomerDTO();
 			cus.setNameCustomer(customerEntity.getNameCustomer());
 			cus.setLastNameCustomer(customerEntity.getLastNameCustomer());
-			cus.setNameDepartment(departmentService.findDepartmentById(customerEntity.getIdDepartment()).get().getNameDepartment());
+			cus.setNameDepartment(
+					departmentService.findDepartmentById(customerEntity.getIdDepartment()).get().getNameDepartment());
 			customersDTO.add(cus);
-		}
+		});
 
 		return customersDTO;
 
