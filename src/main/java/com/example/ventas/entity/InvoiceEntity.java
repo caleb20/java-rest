@@ -21,8 +21,8 @@ public class InvoiceEntity {
 	@Column(name = "id_cus")
 	private Long idCustomer;
 
-//	@Column(name = "date_inv")
-//	private Date dateInvoice;
+	@Column(name = "date_inv")
+	private Date dateInvoice;
 
 	@Column(name = "total_products_inv")
 	private int totalProductsInvoice;
@@ -52,13 +52,13 @@ public class InvoiceEntity {
 		this.idCustomer = idCustomer;
 	}
 
-//	public Date getDateInvoice() {
-//		return dateInvoice;
-//	}
-//
-//	public void setDateInvoice(Date dateInvoice) {
-//		this.dateInvoice = dateInvoice;
-//	}
+	public Date getDateInvoice() {
+		return dateInvoice;
+	}
+
+	public void setDateInvoice(Date dateInvoice) {
+		this.dateInvoice = dateInvoice;
+	}
 
 	public int getTotalProductsInvoice() {
 		return totalProductsInvoice;
@@ -94,7 +94,7 @@ public class InvoiceEntity {
 
 	@Override
 	public String toString() {
-		return "InvoiceEntity [idInvoice=" + idInvoice + ", idCustomer=" + idCustomer + ", dateInvoice=" 
+		return "InvoiceEntity [idInvoice=" + idInvoice + ", idCustomer=" + idCustomer + ", dateInvoice=" + dateInvoice
 				+ ", totalProductsInvoice=" + totalProductsInvoice + ", totalPayInvoice=" + totalPayInvoice
 				+ ", prePayInvoice=" + prePayInvoice + ", statusProductsInvoice=" + statusProductsInvoice + "]";
 	}

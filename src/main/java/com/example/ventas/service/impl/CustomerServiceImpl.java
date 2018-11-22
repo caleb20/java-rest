@@ -10,7 +10,7 @@ import com.example.ventas.dto.CustomerDTO;
 import com.example.ventas.entity.CustomerEntity;
 import com.example.ventas.repository.CustomerRepository;
 import com.example.ventas.service.CustomerService;
-import com.example.ventas.service.DeparmentService;
+import com.example.ventas.service.DepartmentService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -19,7 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepository customerRepository;
 
 	@Autowired
-	DeparmentService departmentService;
+	DepartmentService departmentService;
 
 	@Override
 	public List<CustomerDTO> getAllCustomer() {

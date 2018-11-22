@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ventas.entity.DepartmentEntity;
-import com.example.ventas.service.DeparmentService;
+import com.example.ventas.service.DepartmentService;
 
 @RestController
 @RequestMapping("rest")
-public class DeparmentController {
+public class DepartmentController {
 
 	@Autowired
-	DeparmentService deparmentService;
+	DepartmentService deparmentService;
 
 	@GetMapping("/departments")
 	public List<DepartmentEntity> getDepartmentAll() {
-		return deparmentService.findAllDepartment();
+		return deparmentService.getAllDepartment();
 	}
 
 	@GetMapping("/department/{id}")
 	public Optional<DepartmentEntity> getDepartmentById(@PathVariable("id") Long id) {
-		return deparmentService.findDepartmentById(id);
+		return deparmentService.getDepartmentById(id);
 	}
 
 	@PostMapping("/department/new")

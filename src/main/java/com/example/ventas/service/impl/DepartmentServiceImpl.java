@@ -8,21 +8,21 @@ import org.springframework.stereotype.Service;
 
 import com.example.ventas.entity.DepartmentEntity;
 import com.example.ventas.repository.DepartmentRepository;
-import com.example.ventas.service.DeparmentService;
+import com.example.ventas.service.DepartmentService;
 
 @Service
-public class DeparmentServiceImpl implements DeparmentService {
+public class DepartmentServiceImpl implements DepartmentService {
 
 	@Autowired
 	DepartmentRepository departmentRepository;
 
 	@Override
-	public List<DepartmentEntity> findAllDepartment() {
+	public List<DepartmentEntity> getAllDepartment() {
 		return departmentRepository.findAll();
 	}
 
 	@Override
-	public Optional<DepartmentEntity> findDepartmentById(Long id) {
+	public Optional<DepartmentEntity> getDepartmentById(Long id) {
 		return departmentRepository.findById(id);
 	}
 
@@ -33,15 +33,15 @@ public class DeparmentServiceImpl implements DeparmentService {
 
 	@Override
 	public DepartmentEntity updateDepartment(Long id, DepartmentEntity dep) {
-		Optional<DepartmentEntity> depar = findDepartmentById(id);
+		Optional<DepartmentEntity> depar = getDepartmentById(id);
 		depar.get().setNameDepartment(dep.getNameDepartment());
 		departmentRepository.save(depar.get());
-		return findDepartmentById(id).get();
+		return getDepartmentById(id).get();
 	}
 
 	@Override
 	public DepartmentEntity deleteDepartment(Long id) {
-		Optional<DepartmentEntity> depar = findDepartmentById(id);
+		Optional<DepartmentEntity> depar = getDepartmentById(id);
 		departmentRepository.deleteById(id);
 		return depar.get();
 	}
