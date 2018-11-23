@@ -7,9 +7,7 @@ create table department (
     name_dep varchar(30) not null
 );
 
-
 insert into department(name_dep) values ('Java'),('QA'),('AS400'),('Front-end'),('C#'),('Mobile'),('Administrativa');
-
 
 create table customer(
 	id_cus int auto_increment primary key,
@@ -54,20 +52,23 @@ foreign key (id_cus) references customer(id_cus)
 insert into invoice(id_cus, date_inv, total_products_inv, total_pay_inv, pre_pay_inv, status_products_inv) values(1, '2018-11-16', 2, 2.0, 2.0, true),(2, '2018-11-16', 1, 1.0, 1.0, true),(3, '2018-11-16', 2, 2.0, 2.0, true);
 
 create table detail_invoice(
-id_det int auto_increment,
+id_det MEDIUMINT auto_increment,
 id_inv int,
 id_pro int,
 quantity_det int,
 price_inv double,
-primary key(id_det,id_inv),
+primary key(id_inv,id_det),
 foreign key (id_inv) references invoice(id_inv),
 foreign key (id_pro) references product(id_pro)
-);
+) ENGINE=MyISAM;
 
 insert into detail_invoice(id_inv, id_pro, quantity_det, price_inv) values(1, 1, 1, 1.0), (1, 3, 1, 1.0),
 (2, 3, 1, 1.0),(3, 3, 2, 2.0);
 
 select i.id_inv, c.name_cus, i.date_inv from invoice i join customer c on c.id_cus = i.id_cus;
 
-select d.id_det, d.id_inv, p.description_pro, d.quantity_det, d.price_inv 
-from detail_invoice d join product p on p.id_pro = d.id_pro where id_inv = 1;
+select c.name_cus, d.id_det, d.id_inv, p.description_pro, d.quantity_det, d.price_inv 
+from detail_invoice d 
+join product p on p.id_pro = d.id_pro 
+join invoice i on i.id_inv = d.id_inv 
+join customer c on c.id_cus = i.id_cus;
