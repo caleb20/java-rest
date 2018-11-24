@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.ventas.dto.CustomerDTO;
+import com.example.ventas.dto.in.CustomerIn;
+import com.example.ventas.dto.out.CustomerOut;
 import com.example.ventas.entity.CustomerEntity;
 import com.example.ventas.repository.CustomerRepository;
 import com.example.ventas.service.CustomerService;
@@ -22,22 +23,41 @@ public class CustomerServiceImpl implements CustomerService {
 	DepartmentService departmentService;
 
 	@Override
-	public List<CustomerDTO> getAllCustomer() {
+	public List<CustomerOut> getAllCustomer() {
 		List<CustomerEntity> customersEntity = customerRepository.findAll();
 
-		List<CustomerDTO> customersDTO = new ArrayList<>();
+		List<CustomerOut> customersOut = new ArrayList<>();
 
 		customersEntity.forEach(customerEntity -> {
-			CustomerDTO cus = new CustomerDTO();
-			cus.setNameCustomer(customerEntity.getNameCustomer());
-			cus.setLastNameCustomer(customerEntity.getLastNameCustomer());
-			cus.setNameDepartment(
+			CustomerOut customerOut = new CustomerOut();
+			customerOut.setIdCustomer(customerEntity.getIdCustomer().intValue());
+			customerOut.setNameCustomer(customerEntity.getNameCustomer());
+			customerOut.setLastNameCustomer(customerEntity.getLastNameCustomer());
+			customerOut.setNameDepartment(
 					departmentService.getDepartmentById(customerEntity.getIdDepartment()).get().getNameDepartment());
-			customersDTO.add(cus);
+			customersOut.add(customerOut);
 		});
 
-		return customersDTO;
+		return customersOut;
 
+	}
+
+	@Override
+	public CustomerOut saveCustomer(CustomerIn customer) {
+		CustomerEntity customerEntity = new CustomerEntity();
+		customerEntity.setNameCustomer(customer.getNameCustomer());
+		customerEntity.setLastNameCustomer(customer.getLastNameCustomer());
+		customerEntity.setIdDepartment(Long.valueOf(customer.getIdDepartment()));
+
+		CustomerEntity customerEntityOut = customerRepository.save(customerEntity);
+
+		CustomerOut customerOut = new CustomerOut();
+		customerOut.setIdCustomer(customerEntityOut.getIdCustomer().intValue());
+		customerOut.setNameCustomer(customerEntityOut.getNameCustomer());
+		customerOut.setLastNameCustomer(customerEntityOut.getLastNameCustomer());
+		customerOut.setNameDepartment(departmentService.getDepartmentById(Long.valueOf(customer.getIdDepartment()))
+				.get().getNameDepartment());
+		return customerOut;
 	}
 
 }
