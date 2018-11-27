@@ -43,7 +43,7 @@ public class InvoiceEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "id_inv")
-	private List<DetailInvoiceEntity> invoices = new ArrayList<>();
+	private List<DetailInvoiceEntity> detailInvoice = new ArrayList<>();
 
 	public Long getIdInvoice() {
 		return idInvoice;
@@ -101,12 +101,12 @@ public class InvoiceEntity {
 		this.statusProductsInvoice = statusProductsInvoice;
 	}
 
-	public List<DetailInvoiceEntity> getInvoices() {
-		return invoices;
+	public List<DetailInvoiceEntity> getDetailInvoice() {
+		return detailInvoice;
 	}
 
-	public void setInvoices(List<DetailInvoiceEntity> invoices) {
-		this.invoices = invoices;
+	public void setDetailInvoice(List<DetailInvoiceEntity> detailInvoice) {
+		this.detailInvoice = detailInvoice;
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class InvoiceEntity {
 		return "InvoiceEntity [idInvoice=" + idInvoice + ", idCustomer=" + idCustomer + ", dateInvoice=" + dateInvoice
 				+ ", totalProductsInvoice=" + totalProductsInvoice + ", totalPayInvoice=" + totalPayInvoice
 				+ ", prePayInvoice=" + prePayInvoice + ", statusProductsInvoice=" + statusProductsInvoice
-				+ ", invoices=" + invoices + "]";
+				+ ", detailInvoice=" + detailInvoice + "]";
 	}
 
 }

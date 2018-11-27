@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ventas.dto.out.InvoiceOut;
 import com.example.ventas.entity.InvoiceEntity;
+import com.example.ventas.repository.InvoiceRepository;
 import com.example.ventas.service.InvoiceService;
 
 @RestController
@@ -19,7 +21,7 @@ public class InvoiceController {
 
 	@GetMapping("/invoices")
 	public List<InvoiceEntity> getAllInvoice() {
-		return invoiceService.getAllInvoice();
+		return invoiceService.getAlInvoiceEntity();
 	}
 
 }
