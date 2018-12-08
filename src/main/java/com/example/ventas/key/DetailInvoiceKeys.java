@@ -2,9 +2,7 @@ package com.example.ventas.key;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
 
-@Embeddable
 public class DetailInvoiceKeys implements Serializable {
 
 	private static final long serialVersionUID = -6043916870919102539L;

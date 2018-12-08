@@ -6,6 +6,6 @@ import com.example.ventas.entity.DetailInvoiceEntity;
 
 public interface DetailInvoiceService {
 
-	List<DetailInvoiceEntity> getAllDetailInvoice();
+	List<DetailInvoiceEntity> findAll();
 	
 }

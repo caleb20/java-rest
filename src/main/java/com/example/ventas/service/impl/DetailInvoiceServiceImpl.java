@@ -16,7 +16,7 @@ public class DetailInvoiceServiceImpl implements DetailInvoiceService{
 	DetailInvoiceRepository detailInvoiceRepository;
 	
 	@Override
-	public List<DetailInvoiceEntity> getAllDetailInvoice() {
+	public List<DetailInvoiceEntity> findAll() {
 		return detailInvoiceRepository.findAll();
 	}
 

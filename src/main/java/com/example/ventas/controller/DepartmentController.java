@@ -24,26 +24,26 @@ public class DepartmentController {
 
 	@GetMapping("/departments")
 	public List<DepartmentEntity> getDepartmentAll() {
-		return deparmentService.getAllDepartment();
+		return deparmentService.findAll();
 	}
 
 	@GetMapping("/department/{id}")
 	public Optional<DepartmentEntity> getDepartmentById(@PathVariable("id") Long id) {
-		return deparmentService.getDepartmentById(id);
+		return deparmentService.findById(id);
 	}
 
 	@PostMapping("/department/new")
 	public DepartmentEntity saveDepartment(@RequestBody DepartmentEntity dep) {
-		return deparmentService.createDepartment(dep);
+		return deparmentService.save(dep);
 	}
 	
 	@PostMapping("/department/update/{id}")
 	public DepartmentEntity updateDepartment(@PathVariable("id") Long id, @RequestBody DepartmentEntity dep) {
-		return deparmentService.updateDepartment(id, dep);
+		return deparmentService.update(id, dep);
 	}
 	
 	@DeleteMapping("/department/delete/{id}")
 	public DepartmentEntity deleteDepartment(@PathVariable("id") Long id) {
-		return deparmentService.deleteDepartment(id);
+		return deparmentService.deleteById(id);
 	}
 }

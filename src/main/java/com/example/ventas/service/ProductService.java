@@ -6,7 +6,7 @@ import com.example.ventas.entity.ProductEntity;
 
 public interface ProductService {
 
-	List<ProductEntity> getAllProduct();
-	ProductEntity getById(Long idProduct);
+	List<ProductEntity> findAll();
+	ProductEntity findById(Long idProduct);
 	
 }

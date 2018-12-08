@@ -7,10 +7,10 @@ import com.example.ventas.entity.DepartmentEntity;
 
 public interface DepartmentService {
 
-	List<DepartmentEntity> getAllDepartment();
-	Optional<DepartmentEntity> getDepartmentById(Long id);
-	DepartmentEntity createDepartment(DepartmentEntity dep);
-	DepartmentEntity updateDepartment(Long id, DepartmentEntity dep);
-	DepartmentEntity deleteDepartment(Long id);
+	List<DepartmentEntity> findAll();
+	Optional<DepartmentEntity> findById(Long id);
+	DepartmentEntity save(DepartmentEntity dep);
+	DepartmentEntity update(Long id, DepartmentEntity dep);
+	DepartmentEntity deleteById(Long id);
 	
 }

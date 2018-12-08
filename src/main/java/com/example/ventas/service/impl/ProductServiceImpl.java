@@ -16,12 +16,12 @@ public class ProductServiceImpl implements ProductService {
 	ProductRepository productRepository;
 
 	@Override
-	public List<ProductEntity> getAllProduct() {
+	public List<ProductEntity> findAll() {
 		return productRepository.findAll();
 	}
 
 	@Override
-	public ProductEntity getById(Long idProduct) {
+	public ProductEntity findById(Long idProduct) {
 		return productRepository.findById(idProduct).get();
 	}
 

@@ -22,11 +22,11 @@ public class CustomerController {
 
 	@GetMapping("/customers")
 	public List<CustomerOut> getAllCustomers() {
-		return customerService.getAllCustomer();
+		return customerService.findAll();
 	}
 
 	@PostMapping("/customer/new")
 	public CustomerOut saveCustomer(@RequestBody CustomerIn customerIn) {
-		return customerService.saveCustomer(customerIn);
+		return customerService.save(customerIn);
 	}
 }

@@ -2,7 +2,6 @@ package com.example.ventas.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 	DepartmentService departmentService;
 
 	@Override
-	public List<CustomerOut> getAllCustomer() {
+	public List<CustomerOut> findAll() {
 		List<CustomerEntity> customersEntity = customerRepository.findAll();
 
 		List<CustomerOut> customersOut = new ArrayList<>();
@@ -35,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 			customerOut.setNameCustomer(customerEntity.getNameCustomer());
 			customerOut.setLastNameCustomer(customerEntity.getLastNameCustomer());
 			customerOut.setNameDepartment(
-					departmentService.getDepartmentById(customerEntity.getIdDepartment()).get().getNameDepartment());
+					departmentService.findById(customerEntity.getIdDepartment()).get().getNameDepartment());
 			customersOut.add(customerOut);
 		});
 
@@ -44,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerOut saveCustomer(CustomerIn customer) {
+	public CustomerOut save(CustomerIn customer) {
 		CustomerEntity customerEntity = new CustomerEntity();
 		customerEntity.setNameCustomer(customer.getNameCustomer());
 		customerEntity.setLastNameCustomer(customer.getLastNameCustomer());
@@ -56,13 +55,13 @@ public class CustomerServiceImpl implements CustomerService {
 		customerOut.setIdCustomer(customerEntityOut.getIdCustomer().intValue());
 		customerOut.setNameCustomer(customerEntityOut.getNameCustomer());
 		customerOut.setLastNameCustomer(customerEntityOut.getLastNameCustomer());
-		customerOut.setNameDepartment(departmentService.getDepartmentById(Long.valueOf(customer.getIdDepartment()))
+		customerOut.setNameDepartment(departmentService.findById(Long.valueOf(customer.getIdDepartment()))
 				.get().getNameDepartment());
 		return customerOut;
 	}
 
 	@Override
-	public CustomerEntity getById(Long idCustomer) {
+	public CustomerEntity findById(Long idCustomer) {
 		return customerRepository.findById(idCustomer).get();
 	}
 

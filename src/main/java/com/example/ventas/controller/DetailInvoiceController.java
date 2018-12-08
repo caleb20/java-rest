@@ -19,7 +19,7 @@ public class DetailInvoiceController {
 	
 	@GetMapping("/detailInvoices")
 	public List<DetailInvoiceEntity> getAllDetailInvoice(){
-		return detailInvoiceService.getAllDetailInvoice();
+		return detailInvoiceService.findAll();
 	}
 	
 }

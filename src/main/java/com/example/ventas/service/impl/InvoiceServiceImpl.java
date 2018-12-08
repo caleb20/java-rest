@@ -36,7 +36,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoicesEntity.forEach(invoices -> {
 			InvoiceOut invoiceOut = new InvoiceOut();
 			invoiceOut.setIdInvoice(invoices.getIdInvoice().intValue());
-			invoiceOut.setNameCustomer(customerService.getById(invoices.getIdCustomer()).getNameCustomer());
+			invoiceOut.setNameCustomer(customerService.findById(invoices.getIdCustomer()).getNameCustomer());
 			invoiceOut.setDateInvoice(invoices.getDateInvoice());
 			invoiceOut.setTotalProductsInvoice(invoices.getTotalProductsInvoice());
 			invoiceOut.setTotalPayInvoice(invoices.getTotalPayInvoice());
@@ -48,7 +48,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 				DetailInvoiceOut detailInvoiceOut = new DetailInvoiceOut();
 				detailInvoiceOut.setIdDetailInvoice(detailsInvoice.getIdDetailInvoice().intValue());
 				detailInvoiceOut.setNameProduct(
-						productService.getById(Long.valueOf(detailsInvoice.getIdProduct())).getDescriptionProduct());
+						productService.findById(Long.valueOf(detailsInvoice.getIdProduct())).getDescriptionProduct());
 				detailInvoiceOut.setQuantityDetail(detailsInvoice.getQuantityDetail());
 				detailInvoiceOut.setPriceInvoice(detailsInvoice.getPriceInvoice());
 				detailsInvoiceOut.add(detailInvoiceOut);

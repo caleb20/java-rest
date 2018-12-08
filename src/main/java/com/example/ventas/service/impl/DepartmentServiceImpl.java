@@ -17,31 +17,31 @@ public class DepartmentServiceImpl implements DepartmentService {
 	DepartmentRepository departmentRepository;
 
 	@Override
-	public List<DepartmentEntity> getAllDepartment() {
+	public List<DepartmentEntity> findAll() {
 		return departmentRepository.findAll();
 	}
 
 	@Override
-	public Optional<DepartmentEntity> getDepartmentById(Long id) {
+	public Optional<DepartmentEntity> findById(Long id) {
 		return departmentRepository.findById(id);
 	}
 
 	@Override
-	public DepartmentEntity createDepartment(DepartmentEntity dep) {
+	public DepartmentEntity save(DepartmentEntity dep) {
 		return departmentRepository.save(dep);
 	}
 
 	@Override
-	public DepartmentEntity updateDepartment(Long id, DepartmentEntity dep) {
-		Optional<DepartmentEntity> depar = getDepartmentById(id);
+	public DepartmentEntity update(Long id, DepartmentEntity dep) {
+		Optional<DepartmentEntity> depar = findById(id);
 		depar.get().setNameDepartment(dep.getNameDepartment());
 		departmentRepository.save(depar.get());
-		return getDepartmentById(id).get();
+		return findById(id).get();
 	}
 
 	@Override
-	public DepartmentEntity deleteDepartment(Long id) {
-		Optional<DepartmentEntity> depar = getDepartmentById(id);
+	public DepartmentEntity deleteById(Long id) {
+		Optional<DepartmentEntity> depar = findById(id);
 		departmentRepository.deleteById(id);
 		return depar.get();
 	}
